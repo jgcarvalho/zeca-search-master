@@ -1,0 +1,37 @@
+title = "Distributed EDA config"
+
+[dist]
+	master-url = "localhost"
+	port-a = "5557"
+	port-b = "5558"
+
+#[algorithm]
+#	method = "eda"
+
+[eda]
+	generations = 100
+	population = 100
+	selection = 400
+	tournament = 2
+	output-probabilities = "./output-probabilities-eda"
+	save-steps = 1000
+
+[rules]
+	# Input rule is optional
+	# input = "./optional"
+	output = "./output-rules"
+	initial-states = ["#","A","C","D","E","F","G","H","I","K","L","M","N","P","Q","R","S","T","V","W","Y"]
+	transition-states = ["-","*","|","?"]
+	hydrophobicity = "RosePG"
+
+
+[db]
+	db-dir = "/home/jgcarvalho/sync/data/multissdb/"
+	db-name = "chameleonic.db"
+	bucket-name = "proteins"
+	init = "Seq"
+	target = "All3"
+
+[ca]
+	steps = 100
+	consensus = 5
