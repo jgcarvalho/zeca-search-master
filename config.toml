@@ -11,19 +11,13 @@ title = "Distributed EDA config"
 [eda]
 	generations = 100
 	population = 100
-	selection = 400
 	tournament = 2
 	output-probabilities = "./output-probabilities-eda"
 	save-steps = 1000
 
 [rules]
-	# Input rule is optional
-	# input = "./optional"
+	input = "/home/jgcarvalho/gocode/src/github.com/jgcarvalho/zeca-create-rule/simple.rule"
 	output = "./output-rules"
-	initial-states = ["#","A","C","D","E","F","G","H","I","K","L","M","N","P","Q","R","S","T","V","W","Y"]
-	transition-states = ["-","*","|","?"]
-	hydrophobicity = "RosePG"
-
 
 [db]
 	db-dir = "/home/jgcarvalho/sync/data/multissdb/"
@@ -33,5 +27,5 @@ title = "Distributed EDA config"
 	target = "All3"
 
 [ca]
-	steps = 100
-	consensus = 5
+	steps = 1000
+	ignore-steps = 100
