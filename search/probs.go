@@ -1,4 +1,4 @@
-package probs
+package search
 
 import (
 	"bufio"
@@ -6,12 +6,12 @@ import (
 	"os"
 	"strings"
 
-	"github.com/jgcarvalho/zeca-search-master/search"
+	"github.com/jgcarvalho/zeca-search-master/rules"
 )
 
 // type Pattern [3]string
 type Probability map[string]float64
-type ProbRule map[rule.Pattern]Probability
+type ProbRule map[rules.Pattern]Probability
 
 type Probabilities struct {
 	PID        uint32
@@ -35,20 +35,20 @@ func ReadProbRule(fn string) ProbRule {
 
 		r := strings.NewReplacer("[", " ", "]", " ", "->", " ", "{", " ", "}", " ", ":", " ", ",", " ")
 		fmt.Sscanf(r.Replace(scanner.Text()), "%s %s %s %s %f %s %f %s %f %s %f", &ln, &c, &rn, &s1, &p1, &s2, &p2, &s3, &p3, &s4, &p4)
-		pr[Pattern{ln, c, rn}] = Probability{s1: p1, s2: p2, s3: p3, s4: p4}
+		pr[rules.Pattern{ln, c, rn}] = Probability{s1: p1, s2: p2, s3: p3, s4: p4}
 	}
 	return pr
 }
 
-func (pk *ProbRule) Update(pop *[]search.Individuals) {
-	for pattern := range pk {
-		for k := range pk[pattern] {
+func (pk ProbRule) Update(pop []Individual) {
+	for pattern, _ := range pk {
+		for k, _ := range pk[pattern] {
 			pk[pattern][k] = 0.0
 		}
 	}
 
 	for i := 0; i < len(pop); i++ {
-		for pattern, v := range pop[i].Rule {
+		for pattern, v := range *pop[i].Rule {
 			pk[pattern][v] += 1.0 / float64(len(pop))
 		}
 	}
