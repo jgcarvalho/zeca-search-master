@@ -55,6 +55,7 @@ func Run(conf Config) {
 
 	popFitness := make([]float64, conf.EDA.Population/conf.EDA.Tournament)
 	popQ3 := make([]float64, conf.EDA.Population/conf.EDA.Tournament)
+	popScore := make([]float64, conf.EDA.Population/conf.EDA.Tournament)
 
 	// cria um arquivo de log onde serão salvas as estatisticas por geração, como
 	// média e variância do Q3
@@ -117,6 +118,7 @@ func Run(conf Config) {
 					// fmt.Printf("Individuo id: %d rid: %d g: %d, score: %f\n", g*len(pop)+i, pop[i].PID, pop[i].Generation, pop[i].Fitness)
 					popFitness[i] = pop[i].Fitness
 					popQ3[i] = pop[i].Q3
+					popScore[i] = pop[i].Score
 					i++
 				} else {
 					fmt.Println(prob.PID, pop[i].PID)
@@ -140,8 +142,9 @@ func Run(conf Config) {
 		//  imprimir e as estatisticas
 		meanFit, stdFit := stat.MeanStdDev(popFitness, nil)
 		meanQ3, stdQ3 := stat.MeanStdDev(popQ3, nil)
-		fstat.WriteString(fmt.Sprintf("G: %d, Mean: %.5f, StdDev: %.5f, Mean Q3: %.5f, StdDev Q3: %.5f, \n", g, meanFit, stdFit, meanQ3, stdQ3))
-		fmt.Printf("G: %d, Mean: %.5f, StdDev: %.5f, Mean Q3: %.5f, StdDev Q3: %.5f, \n", g, meanFit, stdFit, meanQ3, stdQ3)
+		meanScore, stdScore := stat.MeanStdDev(popScore, nil)
+		fstat.WriteString(fmt.Sprintf("G: %d, Mean Score: %.5f, StdDev Score: %.5f, Mean: %.5f, StdDev: %.5f, Mean Q3: %.5f, StdDev Q3: %.5f, \n", g, meanScore, stdScore, meanFit, stdFit, meanQ3, stdQ3))
+		fmt.Printf("G: %d, Mean Score: %.5f, StdDev Score: %.5f, Mean: %.5f, StdDev: %.5f, Mean Q3: %.5f, StdDev Q3: %.5f, \n", g, meanScore, stdScore, meanFit, stdFit, meanQ3, stdQ3)
 	}
 
 }

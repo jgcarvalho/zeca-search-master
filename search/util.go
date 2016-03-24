@@ -26,6 +26,7 @@ type Individual struct {
 	Rule       *rules.Rule
 	Fitness    float64
 	Q3         float64
+	Score      float64
 }
 
 // func Fitness(c *ca.CellAuto1D) float64 {
