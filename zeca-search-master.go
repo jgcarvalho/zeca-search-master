@@ -9,7 +9,7 @@ import (
 	"runtime/pprof"
 
 	"github.com/BurntSushi/toml"
-	"github.com/jgcarvalho/zeca-search-master/search"
+	"github.com/jgcarvalho/zeca-search/search"
 )
 
 func run(fnconfig string) {
@@ -25,7 +25,7 @@ func run(fnconfig string) {
 		return
 	}
 	fmt.Println("Configuration:", conf)
-	search.Run(conf)
+	search.RunMaster(conf)
 }
 
 func main() {

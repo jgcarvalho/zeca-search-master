@@ -13,7 +13,6 @@ title = "Distributed EDA config"
 	population = 100
 	tournament = 2
 	output-probabilities = "./output-probabilities-eda"
-	save-steps = 1000
 
 [rules]
 	input = "/home/jgcarvalho/gocode/src/github.com/jgcarvalho/zeca-create-rule/simple.rule"
