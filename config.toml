@@ -10,12 +10,13 @@ title = "Distributed EDA config"
 
 [eda]
 	generations = 100
-	population = 100
+	population = 500
 	tournament = 2
 	output-probabilities = "./output-probabilities-eda"
 
 [rules]
-	input = "/home/jgcarvalho/gocode/src/github.com/jgcarvalho/zeca-create-rule/simple.rule"
+	input = "/home/jgcarvalho/gocode/src/github.com/jgcarvalho/zeca-create-rule/rose_special.rule"
+	# input = "/home/jgcarvalho/teste/zeca-search/test_g20.rule"
 	output = "./output-rules"
 
 [db]
