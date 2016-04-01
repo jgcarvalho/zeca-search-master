@@ -9,8 +9,8 @@ title = "Distributed EDA config"
 #	method = "eda"
 
 [eda]
-	generations = 100
-	population = 500
+	generations = 1000
+	population = 1000
 	tournament = 2
 	output-probabilities = "./output-probabilities-eda"
 
@@ -20,11 +20,13 @@ title = "Distributed EDA config"
 	output = "./output-rules"
 
 [db]
-	db-dir = "/home/jgcarvalho/sync/data/multissdb/"
-	db-name = "chameleonic.db"
+	# db-dir = "/home/jgcarvalho/sync/data/multissdb/"
+	db-dir = "/home/jgcarvalho/sync/data/multissdb/tmp/"
+	# db-name = "chameleonic.db"
+	db-name = "teste.db"
 	bucket-name = "proteins"
-	init = "Seq"
-	target = "All3"
+	init = "SeqHPRoseSpecial"
+	target = "All3HPRoseSpecial"
 
 [ca]
 	steps = 1000
