@@ -9,7 +9,7 @@ title = "Distributed EDA config"
 #	method = "eda"
 
 [eda]
-	generations = 1000
+	generations = 3
 	population = 2000
 	tournament = 2
 	output-probabilities = "./output-probabilities-eda"
