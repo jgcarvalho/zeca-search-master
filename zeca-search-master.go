@@ -4,9 +4,11 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"net/http"
+	_ "net/http/pprof"
 	"os"
 	"runtime"
-	"runtime/pprof"
+	// "runtime/pprof"
 
 	"github.com/BurntSushi/toml"
 	"github.com/jgcarvalho/zeca-search/search"
@@ -30,31 +32,15 @@ func run(fnconfig string) {
 
 func main() {
 	runtime.GOMAXPROCS(runtime.NumCPU())
+	go http.ListenAndServe(":8080", http.DefaultServeMux)
 
 	// flags
 	fnconfig := flag.String("config", "default", "Configuration file")
-	cpuprofile := flag.String("cpuprofile", "", "write cpu profile to file")
-	memprofile := flag.String("memprofile", "", "write memory profile to this file")
+	profile := flag.Bool("profile", false, "profile")
 	flag.Parse()
 
-	// cpuprofile
-	if *cpuprofile != "" {
-		f, err := os.Create(*cpuprofile)
-		if err != nil {
-			log.Fatal(err)
-		}
-		pprof.StartCPUProfile(f)
-		defer pprof.StopCPUProfile()
-	}
-
-	// memprofile
-	if *memprofile != "" {
-		f, err := os.Create(*memprofile)
-		if err != nil {
-			log.Fatal(err)
-		}
-		pprof.WriteHeapProfile(f)
-		defer f.Close()
+	if *profile {
+		go http.ListenAndServe(":8080", http.DefaultServeMux)
 	}
 
 	if *fnconfig == "default" {
