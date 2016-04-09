@@ -27,7 +27,8 @@ func run(fnconfig string) {
 		return
 	}
 	fmt.Println("Configuration:", conf)
-	search.RunMaster(conf)
+	// search.RunMaster(conf)
+	search.RunServer(conf)
 }
 
 func main() {
