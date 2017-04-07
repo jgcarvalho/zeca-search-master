@@ -45,7 +45,7 @@ func main() {
 	}
 
 	if *fnconfig == "default" {
-		run(os.Getenv("GOPATH") + "/src/github.com/jgcarvalho/zeca-search-master/config.toml")
+		run(os.Getenv("GOPATH") + "/src/github.com/jgcarvalho/zeca-search/config.toml")
 	} else {
 		run(*fnconfig)
 	}
